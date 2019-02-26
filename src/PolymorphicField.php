@@ -67,7 +67,9 @@ class PolymorphicField extends Field
             $type['active'] = $this->mapToKey($type['value']) == $model->{$this->attribute . '_type'};
 
             foreach ($type['active'] ? $type['fields'] : [] as $field) {
-                $field->resolveForDisplay($model->{$this->attribute});
+                if ($model->{$this->attribute}) {
+                    $field->resolveForDisplay($model->{$this->attribute});
+                }
             }
         }
     }
